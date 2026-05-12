@@ -34,15 +34,26 @@ public class Main {
                     System.out.print("Enter Saiyan name: ");
                     String name = scanner.nextLine();
 
-                    System.out.print("Enter power level: ");
-                    int power = Integer.parseInt(scanner.nextLine());
+                    try {
 
-                    System.out.print("Enter health: ");
-                    int health = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Enter power level: ");
+                        int power = Integer.parseInt(scanner.nextLine());
 
-                    team.add(new Saiyan(name, power, health));
+                        System.out.print("Enter health: ");
+                        int health = Integer.parseInt(scanner.nextLine());
 
-                    System.out.println(name + " has been added to your team");
+                        team.add(new Saiyan(name, power, health));
+
+                        System.out.println(name + " has been added to your team");
+
+                    } catch (NumberFormatException e) {
+
+                        System.out.println("Invalid input. Please enter a number.");
+
+                    } catch (IllegalArgumentException e) {
+
+                        System.out.println(e.getMessage());
+                    }
 
                     break;
 
@@ -66,7 +77,7 @@ public class Main {
 
                 case "4":
 
-                    int total = BattleArena.calculateTotalPower(team);
+                    long total = BattleArena.calculateTotalPower(team);
 
                     System.out.println("Total Team Power: " + total);
 

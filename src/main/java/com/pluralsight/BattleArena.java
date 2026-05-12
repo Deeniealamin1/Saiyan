@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class BattleArena {
 
-    public static int calculateTotalPower(ArrayList<Saiyan> team) {
-        return team.stream().mapToInt(Saiyan::getPowerLevel).sum();
+    public static long calculateTotalPower(ArrayList<Saiyan> team) {
+        return team.stream().mapToLong(Saiyan::getPowerLevel).sum();
     }
 
     public static void startBattle(ArrayList<Saiyan> team) {
