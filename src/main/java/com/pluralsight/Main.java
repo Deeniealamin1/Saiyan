@@ -8,7 +8,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Saiyan> team = new ArrayList<>();
+
+        ArrayList<Fighter> team = new ArrayList<>();
 
         boolean running = true;
 
@@ -31,10 +32,10 @@ public class Main {
 
                 case "1":
 
-                    System.out.print("Enter Saiyan name: ");
-                    String name = scanner.nextLine();
-
                     try {
+
+                        System.out.print("Enter Saiyan name: ");
+                        String name = scanner.nextLine();
 
                         System.out.print("Enter power level: ");
                         int power = Integer.parseInt(scanner.nextLine());
@@ -46,31 +47,46 @@ public class Main {
 
                         System.out.println(name + " has been added to your team");
 
-                    } catch (NumberFormatException e) {
-
-                        System.out.println("Invalid input. Please enter a number.");
-
-                    } catch (IllegalArgumentException e) {
-
-                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Invalid input.");
                     }
 
                     break;
 
                 case "2":
 
-                    System.out.println("Namekian creation not implemented yet.");
+                    try {
+
+                        System.out.print("Enter Namekian name: ");
+                        String name = scanner.nextLine();
+
+                        System.out.print("Enter power level: ");
+                        int power = Integer.parseInt(scanner.nextLine());
+
+                        System.out.print("Enter health: ");
+                        int health = Integer.parseInt(scanner.nextLine());
+
+                        System.out.print("Enter regeneration: ");
+                        int regen = Integer.parseInt(scanner.nextLine());
+
+                        team.add(new Namekian(name, power, health, regen));
+
+                        System.out.println(name + " has been added to your team");
+
+                    } catch (Exception e) {
+                        System.out.println("Invalid input.");
+                    }
 
                     break;
 
                 case "3":
 
-                    System.out.println("\n--- Current Team ---");
-
                     if (team.isEmpty()) {
-                        System.out.println("No Saiyans found.");
+                        System.out.println("No fighters found.");
                     } else {
-                        team.forEach(System.out::println);
+                        for (Fighter f : team) {
+                            System.out.println(f);
+                        }
                     }
 
                     break;
@@ -78,7 +94,6 @@ public class Main {
                 case "4":
 
                     long total = BattleArena.calculateTotalPower(team);
-
                     System.out.println("Total Team Power: " + total);
 
                     break;
@@ -98,7 +113,6 @@ public class Main {
                 case "0":
 
                     running = false;
-
                     System.out.println("Exiting...");
 
                     break;
@@ -106,8 +120,6 @@ public class Main {
                 default:
 
                     System.out.println("Invalid choice.");
-
-                    break;
             }
         }
 
